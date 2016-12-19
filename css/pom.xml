@@ -1,0 +1,79 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.yc</groupId>
+  <artifactId>css</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+ 
+	<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>4.12</junit.version>
+    <mybatis.version>3.4.1</mybatis.version>
+    <oracle.version>12.1.0.1</oracle.version>    
+     <gson.version>2.7</gson.version>
+    <log4j.version>2.5</log4j.version> 
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${mybatis.version}</version>
+      <scope>runtime</scope>
+     </dependency>
+    
+    <dependency>
+      <groupId>com.hynnet</groupId>
+      <artifactId>oracle-driver-ojdbc6</artifactId>
+      <version>${oracle.version}</version>
+      <exclusions>
+      	<exclusion>
+      		<artifactId>slf4j-api</artifactId>
+      		<groupId>org.slf4j</groupId>
+      	</exclusion>
+      </exclusions>
+    </dependency>
+    
+     <dependency>
+	  <groupId>org.apache.logging.log4j</groupId>
+	  <artifactId>log4j-core</artifactId>
+	  <version>${log4j.version}</version>
+	</dependency>
+			
+  	<!-- Gson -->
+  	<dependency>
+	  <groupId>com.google.code.gson</groupId>
+	  <artifactId>gson</artifactId>
+	  <version>${gson.version}</version>
+	</dependency>
+	
+	<dependency>
+	  <groupId>com.jspsmart.upload</groupId>
+	  <artifactId>smartupload</artifactId>
+	  <version>1.2.6</version>
+	</dependency>
+	
+	<dependency>
+	  <groupId>org.apache.logging.log4j</groupId>
+	  <artifactId>log4j-slf4j-impl</artifactId>
+	  <version>2.6.2</version>
+	</dependency>
+	
+	<dependency>
+	  <groupId>org.mybatis.caches</groupId>
+	  <artifactId>mybatis-ehcache</artifactId>
+	  <version>1.0.3</version>
+	</dependency>
+	
+	    
+  </dependencies>
+</project>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+      
+      default-autowire="byName"
+    >
+
+	<!--  
+	<bean id="userManager" class="com.bjsxt.spring.manager.impl.UserManagerImpl"/>  
+	-->
+	<bean name="loginManager" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="ccs/loginManager/local"/>
+	</bean>
+	<bean name="logManager" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="ccs/logManager/local"/>
+	</bean>
+	<bean name="userManager" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="ccs/userManager/local"/>
+	</bean>
+	<bean name="tradeManager" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="ccs/tradeManager/local"/>
+	</bean>
+</beans>

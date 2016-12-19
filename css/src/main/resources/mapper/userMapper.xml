@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"><!-- 就是映射接口的实现 -->
+<mapper namespace="com.yc.mybatis.mapper.UserMapper">
+<!-- 二级缓存默认是关闭。 1.启用二级缓存  2.把要缓存的数据commit到二级缓存  3.要序列化要存入二级缓存-->
+<cache ></cache>
+	   <!-- 命名空间与对应映射接口的全类名一致 -->
+	 <select id="findUser" parameterType="User" resultType="User">
+	      select * from profile where id = #{id} and name = #{name}
+	 </select>
+	 
+	 <resultMap type="PaginationBean" id="PaginationBeanMap">
+	    <collection property="rows" column="{pageSize=pageSize , currPage=currPage}" select="getUsers"></collection>
+	 </resultMap>
+	 
+	 
+	 <!--# 是占位取值   $ 是直接取到值  -->
+	 <select id="getUsersByPagination" parameterType="PaginationBean" resultMap="PaginationBeanMap">
+	     select count(1) total , ceil(count(1)/${pageSize}) totalPage ,${pageSize} pageSize ,${currPage} currPage from profile
+	 </select>
+	 
+	  <select id="getUsers"  resultType="User">
+	    select * from 
+		(select m.*, rownum rn from 
+		(select * from profile order by 1 desc) m where ${currPage}*${pageSize} >= rownum ) where rn >(${currPage}-1)* ${pageSize}
+	 </select>
+	 
+	 <update id="updateUser" parameterType="User">
+	   update profile set name=#{name} , birthday=#{birthday},gender=#{gender},career=#{career},
+	   address=#{address},mobile=#{mobile},picPath=#{picPath} where id=#{id}
+	 </update>
+	 
+	 <select id="getUserById" parameterType="int" resultType="User">
+	   select * from profile where id=#{id}
+	 </select>
+ </mapper> 
